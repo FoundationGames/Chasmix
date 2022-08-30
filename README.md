@@ -18,4 +18,4 @@
 #### Get Started:
 *NOTE: Chasmix is experimental and still a work-in-progress.* <br/>
 Currently, Chasmix does not have any functionality in mod development environments. <br/>
-For use as a library, 
+For use as a library, see documentation of classes in `foundationgames.chasmix.api`
