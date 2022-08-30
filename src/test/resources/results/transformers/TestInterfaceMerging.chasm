@@ -1,0 +1,12 @@
+{
+    mxn: classes[c -> c.name = "foundationgames/chasmix/test/resources/mixin/TestInterfaceMerging"][0], 
+    trg: classes[c -> c.name = "foundationgames/chasmix/test/resources/targets/TestTarget"][0], 
+    transformations: [{
+            target: {
+                node: trg.interfaces, 
+                start: 0, 
+                end: 0
+            }, 
+            apply: args -> mxn.interfaces[mxni -> len(args.target[trgi -> trgi = mxni]) = 0]
+        }]
+}

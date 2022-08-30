@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'foundationgames'
+version '0.1'
+
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.quiltmc.org/repository/snapshot" }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation "org.quiltmc.chasm:chasm:0.1.0-SNAPSHOT"
+    implementation "org.quiltmc.chasm:chassembly:0.1.0-SNAPSHOT"
+
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-tree:9.2'
+
+    implementation 'com.google.code.gson:gson:2.2.4'
+}
+
+test {
+    useJUnitPlatform()
+}

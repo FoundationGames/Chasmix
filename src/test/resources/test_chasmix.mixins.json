@@ -1,0 +1,6 @@
+{
+  "package": "foundationgames.chasmix.test.resources.mixin",
+  "mixins": [
+    "TestInterfaceMerging"
+  ]
+}
