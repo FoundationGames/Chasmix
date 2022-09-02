@@ -6,17 +6,19 @@ import org.quiltmc.chasm.internal.transformer.ChasmLangTransformer;
 import org.quiltmc.chasm.lang.api.ast.Node;
 
 public class TransformerHolderImpl implements TransformerHolder {
-    private final String id;
+    private final String path;
+    private final String name;
     private final Node node;
 
-    public TransformerHolderImpl(String id, Node node) {
-        this.id = id;
+    public TransformerHolderImpl(String path, String name, Node node) {
+        this.path = path;
+        this.name = name;
         this.node = node;
     }
 
     @Override
     public Transformer toChasmTransformer() {
-        return new ChasmLangTransformer(this.id, this.node);
+        return new ChasmLangTransformer(this.getId(), this.node);
     }
 
     @Override
@@ -25,7 +27,12 @@ public class TransformerHolderImpl implements TransformerHolder {
     }
 
     @Override
+    public String getPath() {
+        return this.path;
+    }
+
+    @Override
     public String getId() {
-        return this.id;
+        return this.path + "/" + this.name;
     }
 }

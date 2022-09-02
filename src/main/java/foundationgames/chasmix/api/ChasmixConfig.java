@@ -1,6 +1,7 @@
 package foundationgames.chasmix.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import foundationgames.chasmix.mixin.ChasmixConfigImpl;
 
 import java.io.InputStream;
@@ -16,7 +17,7 @@ public interface ChasmixConfig {
      * @param jsonIn an {@link InputStream} containing the Mixin config as JSON
      * @return a {@link ChasmixConfig} constructed from the JSON provided
      */
-    static ChasmixConfig read(InputStream jsonIn) {
+    static ChasmixConfig read(InputStream jsonIn) throws JsonSyntaxException {
         return new Gson().fromJson(new InputStreamReader(jsonIn), ChasmixConfigImpl.class);
     }
 

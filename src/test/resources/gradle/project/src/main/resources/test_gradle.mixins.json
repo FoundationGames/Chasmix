@@ -1,0 +1,6 @@
+{
+  "package": "test.mixin",
+  "mixins": [
+    "ExampleMixin"
+  ]
+}

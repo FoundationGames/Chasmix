@@ -28,8 +28,12 @@ public class TransformerGenerator {
         }
 
         chasm.put("transformations", transformations.asNode());
+
+        var name = this.mixin.name;
+        int split = name.lastIndexOf("/");
         return new TransformerHolderImpl(
-                mixin.name.replaceAll("\\$", "_"),
+                name.substring(0, split < 0 ? name.length() : split),
+                name.substring(split + 1),
                 this.chasm.asNode());
     }
 

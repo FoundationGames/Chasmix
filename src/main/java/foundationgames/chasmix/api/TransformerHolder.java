@@ -18,6 +18,11 @@ public interface TransformerHolder {
     Node asChassembly();
 
     /**
+     * @return the parent path of this transformer (equivalent to the mixin package name, separated by '/')
+     */
+    String getPath();
+
+    /**
      * @return what will be the ID of the finally produced Chasm transformer
      */
     String getId();

@@ -1,5 +1,7 @@
 plugins {
+    id 'java-gradle-plugin'
     id 'java'
+    id 'groovy'
 }
 
 group 'foundationgames'
@@ -11,6 +13,11 @@ repositories {
 }
 
 dependencies {
+    implementation gradleApi()
+    implementation 'org.codehaus.groovy:groovy:3.0.10'
+
+    testImplementation platform('org.spockframework:spock-bom:2.1-groovy-3.0')
+    testImplementation 'org.spockframework:spock-core'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
@@ -23,6 +30,17 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.2.4'
 }
 
+gradlePlugin {
+    plugins {
+        chasmix {
+            id = 'foundationgames.chasmix.gradle'
+            implementationClass = 'foundationgames.chasmix.gradle.ChasmixPlugin'
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
 }
+
+test.dependsOn jar
