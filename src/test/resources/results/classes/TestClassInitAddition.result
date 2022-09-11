@@ -1,0 +1,100 @@
+// class version 61.0 (61)
+// access flags 0x21
+public class foundationgames/chasmix/test/resources/targets/EmptyTestTarget {
+
+  // compiled from: EmptyTestTarget.java
+
+  // access flags 0x19
+  public final static [C TEST_CHARS
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 8 L0
+    BIPUSH 6
+    NEWARRAY T_CHAR
+    DUP
+    ICONST_0
+    BIPUSH 102
+    CASTORE
+    DUP
+    ICONST_1
+    BIPUSH 111
+    CASTORE
+    DUP
+    ICONST_2
+    BIPUSH 111
+    CASTORE
+    DUP
+    ICONST_3
+    BIPUSH 98
+    CASTORE
+    DUP
+    ICONST_4
+    BIPUSH 97
+    CASTORE
+    DUP
+    ICONST_5
+    BIPUSH 114
+    CASTORE
+    PUTSTATIC foundationgames/chasmix/test/resources/targets/EmptyTestTarget.TEST_CHARS : [C
+   L1
+    LINENUMBER 14 L1
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    ASTORE 0
+   L2
+    LINENUMBER 15 L2
+    GETSTATIC foundationgames/chasmix/test/resources/targets/EmptyTestTarget.TEST_CHARS : [C
+    ASTORE 1
+    ALOAD 1
+    ARRAYLENGTH
+    ISTORE 2
+    ICONST_0
+    ISTORE 3
+   L3
+   FRAME FULL [java/lang/StringBuilder [C I I] []
+    ILOAD 3
+    ILOAD 2
+    IF_ICMPGE L4
+    ALOAD 1
+    ILOAD 3
+    CALOAD
+    ISTORE 4
+   L5
+    LINENUMBER 16 L5
+    ALOAD 0
+    ILOAD 4
+    INVOKEVIRTUAL java/lang/StringBuilder.append (C)Ljava/lang/StringBuilder;
+    POP
+   L6
+    LINENUMBER 15 L6
+    IINC 3 1
+    GOTO L3
+   L4
+    LINENUMBER 19 L4
+   FRAME SAME
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    ALOAD 0
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/Object;)V
+   L7
+    LINENUMBER 20 L7
+    RETURN
+    LOCALVARIABLE testChar C L5 L6 4
+    LOCALVARIABLE res Ljava/lang/StringBuilder; L2 L7 0
+    MAXSTACK = 4
+    MAXLOCALS = 5
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lfoundationgames/chasmix/test/resources/targets/EmptyTestTarget; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+}

@@ -1,0 +1,17 @@
+{
+    mxn: classes[c -> c.name = "foundationgames/chasmix/test/resources/mixin/TestFieldMerging"][0], 
+    trg: classes[c -> c.name = "foundationgames/chasmix/test/resources/targets/FieldTestTarget"][0], 
+    transformations: [{
+            target: {
+                node: trg.fields, 
+                start: 0, 
+                end: 0
+            }, 
+            apply: x -> mxn.fields[mxnf -> mxnf.name = "newField"]
+        },{
+            target: {
+                node: trg.fields[trgf -> trgf.name = "finalField"][0].access
+            }, 
+            apply: args -> args.target & -17
+        }]
+}

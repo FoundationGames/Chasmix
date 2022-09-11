@@ -1,4 +1,4 @@
 package foundationgames.chasmix.test.resources.targets;
 
-public class TestTarget {
+public class EmptyTestTarget {
 }

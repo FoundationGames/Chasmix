@@ -16,6 +16,7 @@ public class ChasmixGradleContext implements ChasmixContext {
     private final List<ChasmixConfig> configs;
     private final FileCollection jarSource;
 
+    // TODO: Fix such that classes other than solely jar source can be accessed
     public ChasmixGradleContext(Project project, List<ChasmixConfig> configs, FileCollection jarSource) {
         this.gradleProject = project;
         this.configs = configs;

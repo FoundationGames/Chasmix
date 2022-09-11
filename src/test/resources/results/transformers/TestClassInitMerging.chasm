@@ -1,0 +1,41 @@
+{
+    mxn: classes[c -> c.name = "foundationgames/chasmix/test/resources/mixin/TestClassInitMerging"][0], 
+    trg: classes[c -> c.name = "foundationgames/chasmix/test/resources/targets/FieldTestTarget"][0], 
+    insn_reparent: i -> map({
+        list: i, 
+        func: ix -> ix.owner = mxn.name ? ix + {
+            owner: trg.name
+        } : ix
+    }), 
+    method_reparent: m -> m + {
+        code: m.code + {
+            instructions: insn_reparent(m.code.instructions)
+        }
+    }, 
+    transformations: [{
+            target: {
+                node: trg.fields, 
+                start: 0, 
+                end: 0
+            }, 
+            apply: x -> mxn.fields[mxnf -> mxnf.name = "TEST_STRING"]
+        },{
+            r_true: x -> {
+                target: {
+                    node: trg.methods[trgm -> trgm.name = "<clinit>"][0].code.instructions, 
+                    start: 2 * len(node) - 1, 
+                    end: start
+                }, 
+                apply: x -> insn_reparent(mxn.methods[mxnm -> mxnm.name = "<clinit>"][0].code.instructions[i -> i.opcode != 177])
+            }, 
+            r_false: x -> {
+                target: {
+                    node: trg.methods, 
+                    start: 0, 
+                    end: 0
+                }, 
+                apply: x -> [method_reparent(mxn.methods[mxnm -> mxnm.name = "<clinit>"][0])]
+            }, 
+            result: len(trg.methods[trgm -> trgm.name = "<clinit>"]) > 0 ? r_true(null) : r_false(null)
+        }.result]
+}

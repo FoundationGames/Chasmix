@@ -1,0 +1,59 @@
+// class version 61.0 (61)
+// access flags 0x21
+public class foundationgames/chasmix/test/resources/targets/FieldTestTarget {
+
+  // compiled from: FieldTestTarget.java
+
+  // access flags 0x19
+  public final static Ljava/lang/String; TEST_STRING
+
+  // access flags 0x9
+  public static Ljava/lang/String; staticField
+
+  // access flags 0x2
+  private I field
+
+  // access flags 0x12
+  private final I finalField = 2
+
+  // access flags 0x1
+  public <init>(I)V
+    // parameter  P0
+   L0
+    LINENUMBER 9 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L1
+    LINENUMBER 7 L1
+    ALOAD 0
+    ICONST_2
+    PUTFIELD foundationgames/chasmix/test/resources/targets/FieldTestTarget.finalField : I
+   L2
+    LINENUMBER 10 L2
+    ALOAD 0
+    ILOAD 1
+    PUTFIELD foundationgames/chasmix/test/resources/targets/FieldTestTarget.field : I
+   L3
+    LINENUMBER 11 L3
+    RETURN
+   L4
+    LOCALVARIABLE this Lfoundationgames/chasmix/test/resources/targets/FieldTestTarget; L0 L4 0
+    LOCALVARIABLE fieldValue I L0 L4 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x8
+  static <clinit>()V
+    LDC "Hello World"
+    PUTSTATIC foundationgames/chasmix/test/resources/targets/FieldTestTarget.staticField : Ljava/lang/String;
+   L0
+    LINENUMBER 4 L0
+    LDC "HelloWorld"
+    PUTSTATIC foundationgames/chasmix/test/resources/targets/FieldTestTarget.TEST_STRING : Ljava/lang/String;
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    GETSTATIC foundationgames/chasmix/test/resources/targets/FieldTestTarget.TEST_STRING : Ljava/lang/String;
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+}
