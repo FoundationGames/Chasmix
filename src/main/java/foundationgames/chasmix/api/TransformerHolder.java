@@ -1,6 +1,7 @@
 package foundationgames.chasmix.api;
 
 import org.quiltmc.chasm.api.Transformer;
+import org.quiltmc.chasm.api.util.Context;
 import org.quiltmc.chasm.lang.api.ast.Node;
 
 /**
@@ -9,8 +10,9 @@ import org.quiltmc.chasm.lang.api.ast.Node;
 public interface TransformerHolder {
     /**
      * @return a Chasm transformer from this holder's source
+     * @param context
      */
-    Transformer toChasmTransformer();
+    Transformer toChasmTransformer(Context context);
 
     /**
      * @return the source Chassembly for this holder

@@ -2,6 +2,7 @@ package foundationgames.chasmix.chasm;
 
 import foundationgames.chasmix.api.TransformerHolder;
 import org.quiltmc.chasm.api.Transformer;
+import org.quiltmc.chasm.api.util.Context;
 import org.quiltmc.chasm.internal.transformer.ChasmLangTransformer;
 import org.quiltmc.chasm.lang.api.ast.Node;
 
@@ -17,8 +18,8 @@ public class TransformerHolderImpl implements TransformerHolder {
     }
 
     @Override
-    public Transformer toChasmTransformer() {
-        return new ChasmLangTransformer(this.getId(), this.node);
+    public Transformer toChasmTransformer(Context context) {
+        return new ChasmLangTransformer(this.getId(), this.node, context);
     }
 
     @Override

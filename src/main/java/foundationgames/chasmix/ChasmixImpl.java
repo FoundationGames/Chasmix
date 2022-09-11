@@ -5,6 +5,7 @@ import foundationgames.chasmix.api.ChasmixContext;
 import foundationgames.chasmix.api.ChasmixEnv;
 import foundationgames.chasmix.api.TransformerHolder;
 import foundationgames.chasmix.mixin.ChasmixMixinInfo;
+import foundationgames.chasmix.mixin.ChasmixTargetInfo;
 import foundationgames.chasmix.mixin.TransformerGenerator;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class ChasmixImpl implements Chasmix {
 
                 for (var targetName : mixinInfo.targets) {
                     transformers.add(
-                            new TransformerGenerator(mixinInfo, this.context.getClassNode(targetName)).generate());
+                            new TransformerGenerator(mixinInfo, new ChasmixTargetInfo(context, targetName)).generate());
                 }
             }
         }

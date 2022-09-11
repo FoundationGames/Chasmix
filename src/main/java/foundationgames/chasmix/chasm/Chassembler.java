@@ -1,14 +1,21 @@
 package foundationgames.chasmix.chasm;
 
+import org.quiltmc.chasm.lang.api.ast.CallNode;
 import org.quiltmc.chasm.lang.api.ast.IntegerNode;
+import org.quiltmc.chasm.lang.api.ast.LambdaNode;
 import org.quiltmc.chasm.lang.api.ast.ListNode;
 import org.quiltmc.chasm.lang.api.ast.MapNode;
+import org.quiltmc.chasm.lang.api.ast.MemberNode;
 import org.quiltmc.chasm.lang.api.ast.Node;
+import org.quiltmc.chasm.lang.api.ast.NullNode;
+import org.quiltmc.chasm.lang.api.ast.ReferenceNode;
+import org.quiltmc.chasm.lang.api.ast.TernaryNode;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedHashMap;
+import java.util.function.Consumer;
 
 // TODO: Better error handling
 public class Chassembler {
@@ -90,7 +97,30 @@ public class Chassembler {
         return this.put(key, Node.parse("classes[c -> c.name = \""+className+"\"][0]"));
     }
 
-    public Chassembler addTransform(Node target, Node start, Node end, Node apply) {
+    public Chassembler addConditionalTransform(Node condition,
+                                               Consumer<Chassembler> ifTrue, Consumer<Chassembler> ifFalse) {
+        var map = new LinkedHashMap<String, Node>();
+
+        var temp = ofList();
+        ifTrue.accept(temp);
+        if (temp.asNode() instanceof ListNode list) {
+            map.put("r_true", new LambdaNode("x", list.getEntries().get(0)));
+        }
+
+        temp = ofList();
+        ifFalse.accept(temp);
+        if (temp.asNode() instanceof ListNode list) {
+            map.put("r_false", new LambdaNode("x", list.getEntries().get(0)));
+        }
+
+        map.put("result", new TernaryNode(condition,
+                new CallNode(new ReferenceNode("r_true", false), new NullNode()),
+                new CallNode(new ReferenceNode("r_false", false), new NullNode())));
+
+        return this.add(new MemberNode(new MapNode(map), "result"));
+    }
+
+    public Chassembler addSliceTransform(Node target, Node start, Node end, Node apply) {
         return this.addMap()
                 .putMap("target")
                     .put("node", target)
@@ -101,8 +131,25 @@ public class Chassembler {
             .end();
     }
 
-    public Chassembler addTransform(Node target, Node apply) {
-        return this.addTransform(target, new IntegerNode(0), new IntegerNode(0), apply);
+    public Chassembler addPrependTransform(Node target, Node apply) {
+        return this.addSliceTransform(target, new IntegerNode(0), new IntegerNode(0), apply);
+    }
+
+    public Chassembler addAppendTransform(Node target, Node apply) {
+        return this.addSliceTransform(target, Node.parse("2 * len(node) + 1"), Node.parse("start"), apply);
+    }
+
+    public Chassembler addInsnsTailTransform(Node target, Node apply) {
+        return this.addSliceTransform(target, Node.parse("2 * len(node) - 1"), Node.parse("start"), apply);
+    }
+
+    public Chassembler addNodeTransform(Node target, Node apply) {
+        return this.addMap()
+                .putMap("target")
+                    .put("node", target)
+                .end()
+                    .put("apply", apply)
+                .end();
     }
 
     public Chassembler end() {

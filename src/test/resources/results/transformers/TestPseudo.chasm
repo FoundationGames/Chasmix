@@ -1,7 +1,7 @@
 {
-    mxn: classes[c -> c.name = "foundationgames/chasmix/test/resources/mixin/TestInterfaceMerging"][0], 
+    mxn: classes[c -> c.name = "foundationgames/chasmix/test/resources/mixin/TestPseudo"][0], 
     trg: classes[c -> c.name = "foundationgames/chasmix/test/resources/targets/EmptyTestTarget"][0], 
-    transformations: [{
+    transformations: trg = null ? [] : [{
             target: {
                 node: trg.interfaces, 
                 start: 0, 
